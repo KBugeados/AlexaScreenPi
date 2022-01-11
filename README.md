@@ -20,7 +20,6 @@ Crea un Amazon Echo Show usando una raspberry pi
    $ sudo rm -rf porcupine_demo_mic.py
    $ sudo wget https://github.com/KBugeados/AlexaScreenPi/blob/main/porcupine_demo_mic.py
    </pre>
-        </br>
    3.4 Ejecuta picovoice para que empiece a detectar la palabra <code>Alexa</code> (modifica ${ACCESS_KEY} por el access key que creaste en el paso 3.2):
    <pre>
     DISPLAY=":0" porcupine_demo_mic --access_key ${ACCESS_KEY} --keywords alexa
@@ -41,8 +40,8 @@ Crea un Amazon Echo Show usando una raspberry pi
    <pre>
    $ cd $HOME/sdk_folder/ss-build
    $ PA_ALSA_PLUGHW=1 ./modules/Alexa/SampleApp/src/SampleApp -C \
-$HOME/sdk_folder/sdk-build/Integration/AlexaClientSDKConfig.json -C \
-$HOME/sdk_folder/alexa-smart-screen-sdk/modules/GUI/config/SmartScreenSDKConfig.json -L INFO
+     $HOME/sdk_folder/sdk-build/Integration/AlexaClientSDKConfig.json -C \
+     $HOME/sdk_folder/alexa-smart-screen-sdk/modules/GUI/config/SmartScreenSDKConfig.json -L INFO
    </pre>
 
 6. En la Raspberry Pi, ejecuta un navegador web, y abre el fichero <code>file://$HOME/sdk_folder/ss-build/modules/GUI/index.html</code>
