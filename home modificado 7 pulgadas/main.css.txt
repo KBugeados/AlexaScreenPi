@@ -1,0 +1,29 @@
+:focus { 
+    outline: none; 
+}
+
+body, html {
+    overflow: hidden;
+    background-color: black
+}
+
+* {
+    user-select: none;
+}
+
+#displayContainer {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    transform-origin: 0 0;
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: flex-end;
+}

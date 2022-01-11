@@ -1,0 +1,103 @@
+/*
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *     http://aws.amazon.com/apache2.0/
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+import { App } from './app';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import './main.css';
+
+window.onload = () => {
+    const container = document.createElement('div');
+    container.setAttribute('id', 'root');
+    document.getElementsByTagName('body')[0].appendChild(container);
+
+    ReactDOM.render(<App/>, document.getElementById('root'));
+    let hoursContainer = document.querySelector('.hours');
+    let minutesContainer = document.querySelector('.minutes');
+    let secondsContainer = document.querySelector('.seconds');
+    let tickElements = Array.from(document.querySelectorAll('.tick'));
+
+    let last = new Date(0);
+    last.setUTCHours(-1);
+
+    let tickState = true;
+
+    function updateTime () {
+      let now = new Date();
+      let lastHours = last.getHours().toString();
+      let nowHours = now.getHours().toString();
+      if (lastHours !== nowHours) {
+        updateContainer(hoursContainer, nowHours);
+      }
+      let lastMinutes = last.getMinutes().toString();
+      let nowMinutes = now.getMinutes().toString();
+      if (lastMinutes !== nowMinutes) {
+        updateContainer(minutesContainer, nowMinutes);
+      }
+      let lastSeconds = last.getSeconds().toString();
+      let nowSeconds = now.getSeconds().toString();
+      if (lastSeconds !== nowSeconds) {
+      // tick()
+        updateContainer(secondsContainer, nowSeconds);
+      }
+      last = now;
+    }
+    function tick () {
+      tickElements.forEach((t) => t.classList.toggle('tick-hidden'));
+    }
+    function updateContainer (containeri, newTime) {
+      let time = newTime.split('');
+      if (time.length === 1) {
+        time.unshift('0');
+      }
+      let first = containeri.firstElementChild;
+      if (first.lastElementChild.textContent !== time[0]) {
+        updateNumber(first, time[0]);
+      }
+      let lasti = containeri.lastElementChild;
+      if (lasti.lastElementChild.textContent !== time[1]) {
+        updateNumber(lasti, time[1]);
+      }
+    }
+    function updateNumber (elemento, numbero) {
+      // element.lastElementChild.textContent = numbero;
+      let second = elemento.lastElementChild.cloneNode(true);
+      second.textContent = numbero;
+      elemento.appendChild(second);
+      elemento.classList.add('move');
+      setTimeout(() => {
+        elemento.classList.remove('move');
+      }, 990);
+      setTimeout(() => {
+        elemento.removeChild(elemento.firstElementChild);
+      }, 990);
+    }
+    setInterval(updateTime, 100);
+    function getWeather() {
+      let weather;
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=?&appid=e7b21f29cafa7fd3320881a608a8278d&units=metric').then((res) => res.json()).then((data) => weather = data);
+      let wicon = document.getElementById('wicon');
+      let wtemp = document.getElementById('wtemp');
+      setTimeout(() => {
+      // Get temperature
+        wtemp.innerHTML = (Math.round(weather.main.temp * 10) / 10) + 'Âº';
+      // Get icon
+        let iconurl = 'http://openweathermap.org/img/w/' + weather.weather[0].icon + '.png';
+        document.getElementById('wicon').style.backgroundImage = 'url(' + iconurl + ')';
+        }, 2000);
+    }
+    getWeather();
+    setInterval(getWeather, 60000);
+};
