@@ -87,7 +87,7 @@ window.onload = () => {
     setInterval(updateTime, 100);
     function getWeather() {
       let weather;
-      fetch('https://api.openweathermap.org/data/2.5/weather?q=?&appid=e7b21f29cafa7fd3320881a608a8278d&units=metric').then((res) => res.json()).then((data) => weather = data);
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=?&appid=?&units=metric').then((res) => res.json()).then((data) => weather = data);
       let wicon = document.getElementById('wicon');
       let wtemp = document.getElementById('wtemp');
       setTimeout(() => {
