@@ -18,7 +18,7 @@ Crea un Amazon Echo Show usando una raspberry pi
    <pre>
    $ cd /usr/local/lib/python3.7/dist-packages/pvporcupinedemo/
    $ sudo rm -rf porcupine_demo_mic.py
-   $ sudo wget https://github.com/KBugeados/AlexaScreenPi/blob/main/porcupine_demo_mic.py
+   $ sudo wget https://raw.githubusercontent.com/KBugeados/AlexaScreenPi/main/porcupine_demo_mic.py
    </pre>
    3.4 Ejecuta picovoice para que empiece a detectar la palabra <code>Alexa</code> (modifica ${ACCESS_KEY} por el access key que creaste en el paso 3.2):
    <pre>
