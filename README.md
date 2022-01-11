@@ -1,7 +1,7 @@
 # AlexaScreenPi
 Crea un Amazon Echo Show usando una raspberry pi
 
-<img src='https://i.ibb.co/Q9Fg9Pq/Github-miniatura.png'></img>
+![alt text](https://github.com/KBugeados/AlexaScreenPi/blob/main/Github_miniatura.PNG?raw=true)
 
 <h2>Pasos a seguir</h2>
 
